@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
 
   trig: boolean = true;
   click: boolean = true;
+  draw: boolean = false;
   turn: string = "Player ONE: your turn";
   playerOne: number = 0;
   playerTwo: number = 0;
@@ -34,12 +35,13 @@ export class MainComponent implements OnInit {
     this.start();
     this.won = "";
     this.trig = true;
+    this.draw = false;
   }
   
 
   // Click X|O and win functions
   XO(i){
-    if(this.click && this.blocks[i] === "") { 
+    if(this.click && this.blocks[i] === "" && this.draw === false) {  
       if(this.trig){
         this.blocks[i] = "X";
         this.trig = false;
@@ -49,24 +51,39 @@ export class MainComponent implements OnInit {
         this.trig = true;
         this.turn = "Player ONE: your turn";
       }
-      for(let m=0; m<this.wins.length; m++){
-        if(this.win(m)){
-          if(this.trig){
-            this.won = "Second player has WON the game";
-            this.playerTwo ++;
-            this.click = false;
-            this.buttonRestartStyle = "block";
-          }else{
-            this.won = "First player has WON the game";
-            this.click = false;
-            this.playerOne ++;
-            this.buttonRestartStyle = "block";
-          }
-          break;
-        };
+
+    for(let i=0; i<this.blocks.length; i++){
+      this.draw = true;
+      if(this.blocks[i] === ""){
+        this.draw = false;
+        break;
       }
     }
+    if(this.draw === true){
+      this.won = "DRAW";
+      this.buttonRestartStyle = "block";
+      this.turn = "";
+    }
+
+    for(let i=0; i<this.wins.length; i++){
+      if(this.win(i)){
+        if(this.trig && this.draw === false){
+          this.won = "Second player has WON the game";
+          this.playerTwo ++;
+          this.click = false;
+          this.buttonRestartStyle = "block";
+        }else if(!(this.trig) && this.draw === false){
+          this.won = "First player has WON the game";
+          this.click = false;
+          this.playerOne ++;
+          this.buttonRestartStyle = "block";
+        }
+        break;
+      };
+    }
+
   }
+}
 
   win(i){
     let winTrig = false;
