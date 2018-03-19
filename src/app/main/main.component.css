@@ -7,10 +7,15 @@
 .content{
     height: 200px;
 }
+
 p{
     margin: auto;
 }
-
+.head p{
+    margin-left: 2%;
+    font-size: 1.1em; 
+    font-weight: 700;
+}
 
 .wrap-left{
     width:300px;
