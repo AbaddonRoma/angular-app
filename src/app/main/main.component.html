@@ -1,0 +1,34 @@
+<div class="container color-dark">
+  <div class="row head">
+    <p class="col">head</p>
+  </div>
+</div>
+<div class="container color-light">
+  <h3>Wanna play? Press the button below</h3>
+  <button type="button" class="btn btn-primary btn-lg" (click)="start()" [style.display]="buttonStartStyle">Play</button>
+  <div class="row">
+    <!-- LEFT SIDE -->
+    <div class="col-1"></div>
+    <div class="col-5">
+      <div class="wrap-left"  >
+              <div class="block" 
+                  *ngFor = "let block of blocks; let i = index" 
+                  (click)="XO(i)">
+              <span>{{block}}</span>
+          </div>
+      </div>
+  </div>
+   <!-- RIGHT SIDE -->
+   <div class="col-6">
+      <div class="wrap-right" [style.display]="rightStyle">
+        <h3>Games scores</h3>
+        <p>Player one: {{playerOne}}</p>
+        <p>Player two: {{playerTwo}}</p>
+        <p>{{turn}}</p>
+        <p class="won">{{won}}</p>
+      </div>
+      <button type="button" class="btn btn-primary btn-lg" (click)="restart()" [style.display]="buttonRestartStyle">Play Again</button>
+    </div>
+
+</div>
+</div>

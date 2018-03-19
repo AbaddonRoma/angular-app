@@ -1,0 +1,15 @@
+.container{
+    border: 1px solid rgb(184, 220, 255); 
+    border-radius: 20px;
+    padding-left: 5%;    
+    max-width:70%;
+    min-width: 360px;
+    margin-left: 5%;
+    float:left;
+}
+p{
+    cursor: pointer;
+}
+p :hover{
+    text-decoration: none;
+}
